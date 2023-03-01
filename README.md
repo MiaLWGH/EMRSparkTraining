@@ -18,9 +18,31 @@ Note: The first role defines the allowable actions for Amazon EMR when provision
   + Under Networking, select a public subnet for the cluster.
   + Under Security configuration and permissions, select a feasible key pair that will be used to SSH to the master node. Select the `EMR_DefaultRole` for the Service role for Amazon EMR and `EMR_EC2_DefaultRole` for the IAM role for instance profile.
   
-Keep all other default settings and then click create cluster. The launching process may take about 10 minutes. 
+Keep all other default settings and then click create cluster. The cluster will be up within 10 minutes. 
   
-After the cluster being launched, what is the cluster status now?
+During lauching, what is the cluster status? After the cluster being launched, what is the cluster status?
   
 ## Step 1 - Prepare and submit a Spark job
-  
+Next, we can submit a sample Spark job to the cluster, which will retrieve source data from S3 bucket, process and return results file to S3 bucket. Please run the following command in your local machine to download the sample input data and a PySpark script from GitHub repository:
+```
+git clone https://github.com/MiaLWGH/EMRSparkTraining
+```
+In the downloaded folder, file `food_establishment_data.csv` is the sample input data which is a modified version of Health Department inspection results in King County, Washington, from 2006 to 2020. Following are sample rows from the dataset:
+```
+name, inspection_result, inspection_closed_business, violation_type, violation_points
+100 LB CLAM, Unsatisfactory, FALSE, BLUE, 5
+100 PERCENT NUTRICION, Unsatisfactory, FALSE, BLUE, 5
+7-ELEVEN #2361-39423A, Complete, FALSE, , 0
+```
+File `health_violations.py` is a sample PySpark script that processes food establishment inspection data and returns a results file in your S3 bucket. The results file lists the top ten establishments with the most "Red" type violations.
+
+Please upload the input data file `food_establishment_data.csv` and PySpark script `health_violations.py` to your S3 bucket. 
+
+Let us go back to EMR console to submit the Spark job. Find tab Steps and Add step. Fill in the following information:
+```
+Type: Custom JAR
+Name: My Spark App
+JAR location: command-runner.jar
+Arguments: spark-submit s3://<bucketname>/health_violations.py --data_source s3://<bucketname>/food_establishment_data.csv --output_uri s3://<bucketname>/Output/
+```
+
