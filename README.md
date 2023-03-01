@@ -1,2 +1,2 @@
-# EMRSparkTraining
-This repository is used to download the files for the lab of Spark on EMR training session. 
+# LAB - Getting Started with Spark on EMR
+This lab aims to help engineers who are not familiar with EMR to get some fundamental understanding of how to use EMR to run Spark data processing jobs. In this lab, we are going to launch a sample cluster, submit a few Spark jobs, observe and troubleshoot, as well as tune Spark parameters to ensure the job can complete successfully. After completing this lab, engineers should be able to submit simple Spark jobs to EMR and tell the difference between the client deploy mode and cluster deploy mode in Spark. The estimated completion time of this lab is about 15 minutes. 
