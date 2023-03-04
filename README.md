@@ -14,7 +14,7 @@ Note: The first role defines the allowable actions for Amazon EMR when provision
 
 2. Login to your AWS Console and navigate to EMR console. In this lab, we assume engineers are using the new console. Click Create cluster and make sure you follow below rules in the configuration page:
   + Under Name and applications, select EMR release emr-6.9.0 and Spark for Application bundle.
-  + Under Cluster configuration, choose instance type m5.large for both Primary and Core instance groups. Remove Task instance group and ensure the size of Core instance group is 1 instance.
+  + Under Cluster configuration, choose instance type m4.large for both Primary and Core instance groups. Remove Task instance group and ensure the size of Core instance group is 1 instance.
   + Under Networking, select a public subnet for the cluster.
   + Under Security configuration and permissions, select a key pair that will be used to SSH to the master node. Select the `EMR_DefaultRole` for the Service role for Amazon EMR and `EMR_EC2_DefaultRole` for the IAM role for instance profile.
   
@@ -67,7 +67,7 @@ Let's do a simple calculation to find out why no executor started and applicatio
 spark.driver.memory
 spark.executor.memory
 ```
-Remember, we are using instance type [m5.large](https://aws.amazon.com/ec2/instance-types/) for the nodes in the cluster, where each node has 2 vCPUs and 8 GB memory. In an EMR cluster, each node needs to reserve part of the memory to run system daemons. Thus, the memory that can be used for running application is actually less than 8 GB, which is controlled by a parameter named `yarn.nodemanager.resource.memory-mb`. Given we are running the Spark application in cluster mode now, both driver and executor are running at the core node. We then have the following constraint:
+Remember, we are using instance type [m4.large](https://aws.amazon.com/ec2/instance-types/) for the nodes in the cluster, where each node has 2 vCPUs and 8 GB memory. In an EMR cluster, each node needs to reserve part of the memory to run system daemons. Thus, the memory that can be used for running application is actually less than 8 GB, which is controlled by a parameter named `yarn.nodemanager.resource.memory-mb`. Given we are running the Spark application in cluster mode now, both driver and executor are running at the core node. We then have the following constraint:
 ```
 spark.driver.memory + spark.executor.memory < yarn.nodemanager.resource.memory-mb
 ```
@@ -92,12 +92,17 @@ Next, to make the job successfully run in cluster mode, we can try to tune the p
 Type: Custom JAR
 Name: My Spark App
 JAR location: command-runner.jar
-Arguments: spark-submit --deploy-mode --executor-memory 2g cluster s3://<bucketname>/health_violations.py --data_source s3://<bucketname>/food_establishment_data.csv --output_uri s3://<bucketname>/Output/
+Arguments: spark-submit --deploy-mode cluster --executor-memory 2g s3://<bucketname>/health_violations.py --data_source s3://<bucketname>/food_establishment_data.csv --output_uri s3://<bucketname>/Output/
 ```
 Does it work this time? What's the value of spark.executor.memory in the Environment page in Spark UI? Where are the driver and executor running in this application?
 
-## Step 3 - Resubmit the Spark job with no core node
+## Step 3 - Further tune Spark parameters
+Now let us assume you need 5 GB memory for driver and executor respectively. Can you make the job run successfully at this cluster?
+Tips:
++ Which deploy mode do you want to use?
++ The full list of Spark properties for Spark 3.3.0 can be found in [Spark documentation](https://spark.apache.org/docs/3.3.0/configuration.html).
++ Can you have more nodes in the cluster?
 
-
-
-
+Extra Questions:
+1. When stop an application, what will you see if you skip cancelling the step and kill the application directly via SSH to master node?
+2. Will the stuck application complete if you add a new node into the cluster while it is still running?
