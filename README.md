@@ -20,8 +20,6 @@ Note: The first role defines the allowable actions for Amazon EMR when provision
   
 Keep all other default settings and then click create cluster. The cluster will be up within 10 minutes. 
   
-During lauching, what is the cluster status? After the cluster being launched, what is the cluster status?
-  
 ## Step 1 - Prepare and submit a Spark job
 Next, we can submit a sample Spark job to the cluster, which will retrieve source data from S3 bucket, process and return results file to S3 bucket. Please run the following command in your local machine to download the sample input data and a PySpark script from a GitHub repository:
 ```
