@@ -36,11 +36,18 @@ File `health_violations.py` is a sample PySpark script that processes food estab
 
 Please upload the input data file `food_establishment_data.csv` and PySpark script `health_violations.py` to your S3 bucket. 
 
-Let us go back to EMR console to submit the Spark job. Find tab Steps and Add step. Fill in the following information:
+Let us go back to EMR console to submit the Spark job. Find tab Steps and Click Add step. Fill in the following information. Please modify the S3 bucket URIs to your own ones:
 ```
 Type: Custom JAR
 Name: My Spark App
 JAR location: command-runner.jar
 Arguments: spark-submit s3://<bucketname>/health_violations.py --data_source s3://<bucketname>/food_establishment_data.csv --output_uri s3://<bucketname>/Output/
 ```
+After submitting, each step will have a step ID and its running status is showing in the console. 
 
+If your failed, click on the status `Failed`, can you find any clue?
+
+If your step completed successfully, find tab Applications and open `Spark UI`, you shall be able to see one application in the list. You will be able to check more information about this application if you click the App ID. Explore the Spark UI, can you find the answer for the following questions?
+1. Besides driver, how many executors did you use?
+2. Which node was the driver running on? How about the executor(s)?
+3. Where was the YARN Application Master?
