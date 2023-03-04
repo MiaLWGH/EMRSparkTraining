@@ -12,7 +12,7 @@ This command will create two IAM roles, `EMR_DefaultRole` and `EMR_EC2_DefaultRo
 
 Note: The first role defines the allowable actions for Amazon EMR when provisioning resources and performing service-level tasks that are not       performed in the context of an EC2 instance running within a cluster. For example, the service role is used to provision EC2 instances when a cluster launches. The second one is assigned to every EC2 instance in an Amazon EMR cluster when the instance launches. Application processes that run on top of the Hadoop ecosystem assume this role for permissions to interact with other AWS services.
 
-2. Login to your AWS Console and navigate to EMR console. In this lab, we assume engineers are using the new console. Click Create cluster and make sure the following information in the prompt page:
+2. Login to your AWS Console and navigate to EMR console. In this lab, we assume engineers are using the new console. Click Create cluster and make sure you follow below rules in the configuration page:
   + Under Name and applications, select EMR release emr-6.9.0 and Spark for Application bundle.
   + Under Cluster configuration, choose instance type m4.large for both Primary and Core instance groups. Remove Task instance group and ensure the size of Core instance group is 1 instance.
   + Under Networking, select a public subnet for the cluster.
@@ -23,7 +23,7 @@ Keep all other default settings and then click create cluster. The cluster will 
 During lauching, what is the cluster status? After the cluster being launched, what is the cluster status?
   
 ## Step 1 - Prepare and submit a Spark job
-Next, we can submit a sample Spark job to the cluster, which will retrieve source data from S3 bucket, process and return results file to S3 bucket. Please run the following command in your local machine to download the sample input data and a PySpark script from GitHub repository:
+Next, we can submit a sample Spark job to the cluster, which will retrieve source data from S3 bucket, process and return results file to S3 bucket. Please run the following command in your local machine to download the sample input data and a PySpark script from a GitHub repository:
 ```
 git clone https://github.com/MiaLWGH/EMRSparkTraining
 ```
