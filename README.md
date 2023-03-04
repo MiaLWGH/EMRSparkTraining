@@ -43,7 +43,7 @@ Name: My Spark App
 JAR location: command-runner.jar
 Arguments: spark-submit s3://<bucketname>/health_violations.py --data_source s3://<bucketname>/food_establishment_data.csv --output_uri s3://<bucketname>/Output/
 ```
-After submitting, each step will have a step ID and its running status is showing in the console. 
+After submitting, each step will have a step ID and its running status is showing in the console. This application should complete within 2 minutes. 
 
 If your failed, click on the status `Failed`, can you find any clue?
 
