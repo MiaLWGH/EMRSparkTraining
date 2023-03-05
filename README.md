@@ -105,4 +105,4 @@ Tips:
 
 Extra Questions:
 1. When stop an application, what will you see if you skip cancelling the step and kill the application directly via SSH to master node?
-2. Will the stuck application complete if you add a new node into the cluster while it is still running?
+2. While the stuck applicatino is still running, if you add a new node in the cluster, do you think the application can complete successfully?
