@@ -45,7 +45,7 @@ Arguments: spark-submit s3://<bucketname>/health_violations.py --data_source s3:
 ```
 After submitting, each step will have a step ID and its running status is showing in the console. This application should complete within 2 minutes. 
 
-If your failed, click on the status `Failed`, can you find any clue?
+If your job failed, click on the status `Failed`, can you find any clue?
 
 If your step completed successfully, find tab Applications and open `Spark UI`, you shall be able to see one application in the list. You will be able to check more information about this application if you click the App ID. Explore the Spark UI, can you find the answer for the following questions about executors?
 1. Besides driver, how many executors did you use?
