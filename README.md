@@ -10,7 +10,7 @@ aws emr create-default-roles
 ```
 This command will create two IAM roles, `EMR_DefaultRole` and `EMR_EC2_DefaultRole`. 
 
-Note: The first role defines the allowable actions for Amazon EMR when provisioning resources and performing service-level tasks that are not       performed in the context of an EC2 instance running within a cluster. For example, the service role is used to provision EC2 instances when a cluster launches. The second one is assigned to every EC2 instance in an Amazon EMR cluster when the instance launches. Application processes that run on top of the Hadoop ecosystem assume this role for permissions to interact with other AWS services.
+> Note: The first role defines the allowable actions for Amazon EMR when provisioning resources and performing service-level tasks that are not       performed in the context of an EC2 instance running within a cluster. For example, the service role is used to provision EC2 instances when a cluster launches. The second one is assigned to every EC2 instance in an Amazon EMR cluster when the instance launches. Application processes that run on top of the Hadoop ecosystem assume this role for permissions to interact with other AWS services.
 
 2. Login to your AWS Console and navigate to EMR console. In this lab, we assume engineers are using the new console. Click Create cluster and make sure you follow below rules in the configuration page:
   + Under Name and applications, select EMR release emr-6.9.0 and Spark for Application bundle.
@@ -19,21 +19,21 @@ Note: The first role defines the allowable actions for Amazon EMR when provision
   + Under Cluster logs, select an S3 bucket for logging. 
   + Under Security configuration and permissions, select a key pair that will be used to SSH to the master node. Select the `EMR_DefaultRole` for the Service role for Amazon EMR and `EMR_EC2_DefaultRole` for the IAM role for instance profile.
   
-Keep all other default settings and then click create cluster. The cluster will be up within 10 minutes. 
+Keep all other default settings and create cluster. The cluster will be up within 10 minutes. 
   
 ## Step 1 - Prepare and submit a Spark job
-Next, we can submit a sample Spark job to the cluster, which will retrieve source data from S3 bucket, process and return results file to S3 bucket. Please run the following command in your local machine to download the sample input data and a PySpark script from a GitHub repository:
+Next, we are going to submit a sample Spark job to the cluster, which will retrieve source data from S3 bucket, process and return results file to S3 bucket. Please run the following command in your local machine to download the sample input data and a PySpark script from a GitHub repository:
 ```
 git clone https://github.com/MiaLWGH/EMRSparkTraining
 ```
-In the downloaded folder, file `food_establishment_data.csv` is the sample input data which is a modified version of Health Department inspection results in King County, Washington, from 2006 to 2020. Following are sample rows from the dataset:
+> In the downloaded folder, file `food_establishment_data.csv` is the sample input data which is a modified version of Health Department inspection results in King County, Washington, from 2006 to 2020. Following are sample rows from the dataset:
 ```
 name, inspection_result, inspection_closed_business, violation_type, violation_points
 100 LB CLAM, Unsatisfactory, FALSE, BLUE, 5
 100 PERCENT NUTRICION, Unsatisfactory, FALSE, BLUE, 5
 7-ELEVEN #2361-39423A, Complete, FALSE, , 0
 ```
-File `health_violations.py` is a sample PySpark script that processes food establishment inspection data and returns a results file in your S3 bucket. The results file lists the top ten establishments with the most "Red" type violations.
+> File `health_violations.py` is a sample PySpark script that processes food establishment inspection data and returns a results file in your S3 bucket. The results file lists the top ten establishments with the most "Red" type violations.
 
 Please upload the input data file `food_establishment_data.csv` and PySpark script `health_violations.py` to your S3 bucket. 
 
