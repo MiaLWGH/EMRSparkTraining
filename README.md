@@ -48,7 +48,7 @@ After submitting, each step will have a step ID and its running status is showin
 
 If your job failed, click on the status `Failed`, can you find any clue?
 
-If your step completed successfully, find tab Applications and open `Spark UI`, you shall be able to see one application in the list. You will be able to check more information about this application if you click the App ID. Explore the Spark UI, can you find the answer for the following questions about executors?
+If your step completed successfully, find tab Applications and open `Spark UI`, you shall be able to see one application in the list. You will be able to check more information about this application if you click the App ID. Explore the Spark UI, and on page of Executors, can you find the answer for the following questions about executors?
 1. Besides driver, how many executors did you use?
 2. Which node was the driver running on? How about the executor(s)?
 3. Where was the YARN Application Master?
