@@ -106,6 +106,6 @@ In this lab, we tried to launch an EMR cluster and submit a sample Spark job in 
 
 You are encouraged to explore the following questions: 
 1. If you kill an application without cancelling the step, what will happen?
-2. Can you explain the issue that you are facing? The documentations [1](https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-hadoop-task-config.html#emr-hadoop-task-config-m5) [2](https://aws.amazon.com/blogs/big-data/best-practices-for-successfully-managing-memory-for-apache-spark-applications-on-amazon-emr/) may help.
+2. Can you explain the issue that you are facing? The documentations [[1]](https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-hadoop-task-config.html#emr-hadoop-task-config-m5) [[2]](https://aws.amazon.com/blogs/big-data/best-practices-for-successfully-managing-memory-for-apache-spark-applications-on-amazon-emr/) may help.
 
 At the end of this lab, please make sure that you terminate all AWS resources you launched.
