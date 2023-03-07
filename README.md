@@ -41,8 +41,8 @@ After submitting, each step will have a step ID and its running status is showin
 
 If your job failed, click on the status `Failed`, can you find any clue? If you would like to check the driver log, please go to subsection 'Check driver stderr log' in Step 3. 
 
-If your step completed successfully, find tab Applications and open `Spark UI`, you shall be able to see one application in the list. You will be able to check more information about this application if you click the App ID. 
-> Note: Step log may have a small delay to show up in EMR console. You can find the corresponding application ID of that step if you open the step stderr log. Find the corresponding application ID in Spark UI. 
+If your step completed successfully, you shall be able to find the results file in your S3 bucket. To check more information about the application, find tab Applications and open `Spark UI`, you shall be able to see your Spark application in the list. Click the App ID to check the application.  
+> Note: Step log may have a small delay to show up in EMR console. If you open the step stderr log, you can find the corresponding application ID of that step, which can be used for allocating application in Spark UI. 
 
 Explore the Spark UI, and on page of Executors, can you find the answer for the following questions about executors?
 1. Besides driver, how many executors did you use?
@@ -101,4 +101,11 @@ yarn application -kill application_XXXXXXXXXXXXXX_XXXX
 ```
 To double check if the application is successfully killed, you can rerun the list command. 
 
-Extension: If you kill an application without cancelling the step, what will happen?
+## Conclusion
+In this lab, we tried to launch an EMR cluster and submit a sample Spark job in two deploy modes, client and cluster mode. Through checking the application information, we can tell the difference between the two deploy modes. 
+
+You are encouraged to explore the following questions: 
+1. If you kill an application without cancelling the step, what will happen?
+2. Can you explain the issue that you are facing? The documentations [1](https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-hadoop-task-config.html#emr-hadoop-task-config-m5) [2](https://aws.amazon.com/blogs/big-data/best-practices-for-successfully-managing-memory-for-apache-spark-applications-on-amazon-emr/) may help.
+
+At the end of this lab, please make sure that you terminate all AWS resources you launched.
