@@ -26,14 +26,7 @@ Next, we are going to submit a sample Spark job to the cluster, which will retri
 ```
 git clone https://github.com/MiaLWGH/EMRSparkTraining
 ```
-> In the downloaded folder, file `food_establishment_data.csv` is the sample input data which is a modified version of Health Department inspection results in King County, Washington, from 2006 to 2020. Following are sample rows from the dataset:
-```
-name, inspection_result, inspection_closed_business, violation_type, violation_points
-100 LB CLAM, Unsatisfactory, FALSE, BLUE, 5
-100 PERCENT NUTRICION, Unsatisfactory, FALSE, BLUE, 5
-7-ELEVEN #2361-39423A, Complete, FALSE, , 0
-```
-> File `health_violations.py` is a sample PySpark script that processes food establishment inspection data and returns a results file in your S3 bucket. The results file lists the top ten establishments with the most "Red" type violations.
+> Note: File `food_establishment_data.csv` is the sample input data which is a modified version of Health Department inspection results in King County, Washington, from 2006 to 2020. File `health_violations.py` is a sample PySpark script that processes food establishment inspection data and returns a results file in your S3 bucket. The results file lists the top ten establishments with the most "Red" type violations.
 
 Please upload the input data file `food_establishment_data.csv` and PySpark script `health_violations.py` to your S3 bucket. 
 
