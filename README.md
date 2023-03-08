@@ -41,15 +41,15 @@ Arguments: spark-submit s3://<bucketname>/health_violations.py --data_source s3:
 ```
 After submitting, each step will have a step ID and its running status is showing in the console. This application should complete within 1 minutes. 
 
-4. If your step failed, click on the status `Failed`, can you find any clue? If you would like to check the driver log, please go to subsection 'Check driver stderr log' in Step 3. 
-
-If your step completed successfully, you shall be able to find the results file in your S3 bucket. To check more information about the application, find tab Applications and open `Spark UI`, you shall be able to see your Spark application in the list. Click the App ID to check the application.  
+4. If your step completed successfully, you shall be able to find the results file in your S3 bucket. To check more information about the application, find tab Applications and open `Spark UI`, you shall be able to see your Spark application in the list. Click the App ID to check the application.  
 > Note: Step log may have a small delay to show up in EMR console. If you open the step stderr log, you can find the corresponding application ID of that step, which can be used for allocating application in Spark UI. 
 
 Explore the Spark UI, and on page of Executors, can you find the answer for the following questions about executors?
-(1) Besides driver, how many executors did you use?
-(2) Which node was the driver running on? How about the executor(s)?
-(3) Where was the YARN Application Master?
++ Besides driver, how many executors did you use?
++ Which node was the driver running on? How about the executor(s)?
++ Where was the YARN Application Master?
+
+If your step failed, click on the status `Failed`, can you find any clue? If you would like to check the driver log, please go to subsection 'Check driver stderr log' in Step 3. 
 
 ## Step 2 - Submit the Spark job in cluster mode
 Let's then try to submit the same job, but in cluster mode and see what will happen. We add `--deploy-mode cluster` in Arguments when submitting the job:
