@@ -14,7 +14,7 @@ This command will create two IAM roles, `EMR_DefaultRole` and `EMR_EC2_DefaultRo
 
 2. Login to your AWS Console and navigate to EMR console. In this lab, we assume engineers are using the new console. Click Create cluster and make sure you follow below rules in the configuration page:
   + Under Name and applications, select EMR release emr-6.9.0 and Spark for Application bundle (default).
-  + Under Cluster configuration, choose instance type m5.xlarge (default) for both Primary and Core instance groups. Remove Task instance group and ensure the size of Core instance group is 1 instance.
+  + Under Cluster configuration, choose instance type `m5.xlarge` (default) for both Primary and Core instance groups. Remove Task instance group and ensure the size of Core instance group is 1 instance.
   + Under Networking, select a public subnet for the cluster.
   + Under Cluster logs, select an S3 bucket for logging. 
   + Under Security configuration and permissions, select a key pair that will be used to SSH to the master node. Select the `EMR_DefaultRole` for the Service role for Amazon EMR and `EMR_EC2_DefaultRole` for the IAM role for instance profile.
