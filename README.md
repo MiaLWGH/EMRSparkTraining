@@ -17,7 +17,8 @@ This command will create two IAM roles, `EMR_DefaultRole` and `EMR_EC2_DefaultRo
   + Under Cluster configuration, choose instance type `m5.xlarge` (default) for both Primary and Core instance groups. Remove Task instance group and ensure the size of Core instance group is 1 instance.
   + Under Networking, select a public subnet for the cluster.
   + Under Cluster logs, select an S3 bucket for logging. 
-  + Under Security configuration and permissions, select a key pair that will be used to SSH to the master node. Select the `EMR_DefaultRole` for the Service role for Amazon EMR and `EMR_EC2_DefaultRole` for the IAM role for instance profile.
+  + Under Security configuration and EC2 key pairs, select an EC2 key pair that will be used to SSH to the master node. 
+  + Under Identity and Access Management (IAM) roles, select the `EMR_DefaultRole` for the Service role for Amazon EMR and `EMR_EC2_DefaultRole` for the IAM role for instance profile.
   
 Keep all other default settings and create cluster. The cluster will be up within 10 minutes. 
   
