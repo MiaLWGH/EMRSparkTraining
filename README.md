@@ -23,15 +23,16 @@ This command will create two IAM roles, `EMR_DefaultRole` and `EMR_EC2_DefaultRo
 Keep all other default settings and create cluster. The cluster will be up within 10 minutes. 
   
 ## Step 1 - Submit a Spark job in client mode
-Next, we are going to submit a sample Spark job to the cluster, which will retrieve source data from S3 bucket, process and return results file to S3 bucket. Please run the following command in your local machine to download the sample input data and a PySpark script from a GitHub repository:
+Next, we are going to submit a sample Spark job to the cluster, which will retrieve source data from S3 bucket, process and return results file to S3 bucket. 
+1. Please run the following command in your local machine to download the sample input data and a PySpark script from a GitHub repository:
 ```
 git clone https://github.com/MiaLWGH/EMRSparkTraining
 ```
 > Note: File `food_establishment_data.csv` is the sample input data which is a modified version of Health Department inspection results in King County, Washington, from 2006 to 2020. File `health_violations.py` is a sample PySpark script that processes food establishment inspection data and returns a results file in your S3 bucket. The results file lists the top ten establishments with the most "Red" type violations.
 
-Please upload the input data file `food_establishment_data.csv` and PySpark script `health_violations.py` to your S3 bucket. 
+2. Please upload the input data file `food_establishment_data.csv` and PySpark script `health_violations.py` to your S3 bucket. 
 
-Let us go back to EMR console to submit the Spark job. Find tab Steps and Click Add step. Fill in the following information. Please modify the S3 bucket URIs to your own ones:
+3. Let us go back to EMR console to submit the Spark job. Find tab Steps and Click Add step. Fill in the following information. Please modify the S3 bucket URIs to your own ones:
 ```
 Type: Custom JAR
 Name: My Spark App Client
@@ -40,15 +41,15 @@ Arguments: spark-submit s3://<bucketname>/health_violations.py --data_source s3:
 ```
 After submitting, each step will have a step ID and its running status is showing in the console. This application should complete within 1 minutes. 
 
-If your job failed, click on the status `Failed`, can you find any clue? If you would like to check the driver log, please go to subsection 'Check driver stderr log' in Step 3. 
+4. If your step failed, click on the status `Failed`, can you find any clue? If you would like to check the driver log, please go to subsection 'Check driver stderr log' in Step 3. 
 
 If your step completed successfully, you shall be able to find the results file in your S3 bucket. To check more information about the application, find tab Applications and open `Spark UI`, you shall be able to see your Spark application in the list. Click the App ID to check the application.  
 > Note: Step log may have a small delay to show up in EMR console. If you open the step stderr log, you can find the corresponding application ID of that step, which can be used for allocating application in Spark UI. 
 
 Explore the Spark UI, and on page of Executors, can you find the answer for the following questions about executors?
-1. Besides driver, how many executors did you use?
-2. Which node was the driver running on? How about the executor(s)?
-3. Where was the YARN Application Master?
+(1) Besides driver, how many executors did you use?
+(2) Which node was the driver running on? How about the executor(s)?
+(3) Where was the YARN Application Master?
 
 ## Step 2 - Submit the Spark job in cluster mode
 Let's then try to submit the same job, but in cluster mode and see what will happen. We add `--deploy-mode cluster` in Arguments when submitting the job:
