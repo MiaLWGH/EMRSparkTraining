@@ -72,8 +72,8 @@ Are the values the same for above two applications?
 Now let us assume you need 8 GB memory for driver and executor respectively. Can you make the job run successfully in both deploy modes at this cluster?
 The properties that are used to override memory size for driver and executors are:
 ```
---driver-memory
---executor-memory
+--driver-memory 8g
+--executor-memory 8g
 ```
 The full list of Spark properties for Spark 3.3.0 can be found in [Spark documentation](https://spark.apache.org/docs/3.3.0/configuration.html).
 
